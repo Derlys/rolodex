@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "extends": "@rolodex/config/tsconfig.base.json"
+}

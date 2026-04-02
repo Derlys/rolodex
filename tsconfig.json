@@ -1,0 +1,3 @@
+{
+  "extends": "@rolodex/config/tsconfig.base.json"
+}
