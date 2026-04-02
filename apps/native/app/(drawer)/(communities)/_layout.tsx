@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { Tabs } from 'expo-router'
 import { useThemeColor } from 'heroui-native'
 
-export default function TabLayout() {
+export default function CommunitiesLayout() {
   const themeColorForeground = useThemeColor('foreground')
   const themeColorBackground = useThemeColor('background')
 
@@ -26,9 +26,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: 'Communities',
           tabBarIcon: ({ color, size }: { color: string; size: number }) => (
-            <Ionicons name="home" size={size} color={color} />
+            <Ionicons name="people" size={size} color={color} />
           ),
         }}
       />

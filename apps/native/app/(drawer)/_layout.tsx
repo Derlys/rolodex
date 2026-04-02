@@ -1,4 +1,4 @@
-import { Ionicons, MaterialIcons } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 import { Link } from 'expo-router'
 import { Drawer } from 'expo-router/drawer'
 import { useThemeColor } from 'heroui-native'
@@ -45,17 +45,17 @@ function DrawerLayout() {
         }}
       />
       <Drawer.Screen
-        name="(tabs)"
+        name="(communities)"
         options={{
-          headerTitle: 'Tabs',
+          headerTitle: 'Communities',
           drawerLabel: ({ color, focused }) => (
             <Text style={{ color: focused ? color : themeColorForeground }}>
-              Tabs
+              Communities
             </Text>
           ),
           drawerIcon: ({ size, color, focused }) => (
-            <MaterialIcons
-              name="border-bottom"
+            <Ionicons
+              name="people"
               size={size}
               color={focused ? color : themeColorForeground}
             />
@@ -85,24 +85,6 @@ function DrawerLayout() {
           drawerIcon: ({ size, color, focused }) => (
             <Ionicons
               name="checkbox-outline"
-              size={size}
-              color={focused ? color : themeColorForeground}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="ai"
-        options={{
-          headerTitle: 'AI',
-          drawerLabel: ({ color, focused }) => (
-            <Text style={{ color: focused ? color : themeColorForeground }}>
-              AI
-            </Text>
-          ),
-          drawerIcon: ({ size, color, focused }) => (
-            <Ionicons
-              name="chatbubble-ellipses-outline"
               size={size}
               color={focused ? color : themeColorForeground}
             />
