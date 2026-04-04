@@ -1,5 +1,6 @@
 import '@/polyfills'
 import '@/global.css'
+import '@/utils/i18n'
 import { QueryClientProvider } from '@tanstack/react-query'
 import {
   createSolanaDevnet,
@@ -28,18 +29,6 @@ const identity = {
   icon: 'favicon.png',
 }
 
-function StackLayout() {
-  return (
-    <Stack screenOptions={{}}>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen
-        name="modal"
-        options={{ title: 'Modal', presentation: 'modal' }}
-      />
-    </Stack>
-  )
-}
-
 export default function Layout() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -55,7 +44,12 @@ export default function Layout() {
                 }}
               >
                 <ThemedStatusBar />
-                <StackLayout />
+                <Stack screenOptions={{ headerShown: false }}>
+                  <Stack.Screen
+                    name="(tabs)"
+                    options={{ headerShown: false }}
+                  />
+                </Stack>
               </HeroUINativeProvider>
             </AppThemeProvider>
           </KeyboardProvider>

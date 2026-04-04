@@ -56,7 +56,7 @@ function App() {
 **Correct (expo-router uses native stack by default):**
 
 ```tsx
-// app/_layout.tsx
+// app/communities.tsx
 import { Stack } from 'expo-router'
 
 export default function Layout() {
@@ -115,7 +115,7 @@ function App() {
 **Correct (expo-router native tabs):**
 
 ```tsx
-// app/(tabs)/_layout.tsx
+// app/(tabs)/communities.tsx
 import { NativeTabs } from 'expo-router/unstable-native-tabs'
 
 export default function TabLayout() {

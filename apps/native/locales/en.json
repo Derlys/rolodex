@@ -1,0 +1,17 @@
+{
+  "tabs": {
+    "home": "Home",
+    "solana": "Solana",
+    "communities": "Communities",
+    "todos": "Todos",
+    "explore": "Explore"
+  },
+  "jupiter_home": {
+    "balance_title": "Total Balance",
+    "tokens_tab": "Tokens",
+    "liquidity_tab": "Liquidity",
+    "positions": "Positions",
+    "view_details": "Details",
+    "swap_btn": "Swap"
+  }
+}

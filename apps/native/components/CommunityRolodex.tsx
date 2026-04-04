@@ -15,46 +15,68 @@ interface Community {
 const COMMUNITIES: Community[] = [
   {
     id: '1',
-    name: 'Solana Foundation',
-    logoUrl: 'https://solana.com/favicon.png',
-    link: 'https://solana.com',
-    description: 'Official Solana Foundation',
-    bgColor: 'bg-lime-300',
+    name: 'WayLearn Latam',
+    logoUrl: 'https://unavatar.io/twitter/waylearnlatam',
+    link: 'https://x.com/waylearnlatam',
+    description:
+      'Comunidad educativa enfocada en Web3 y desarrollo en Latinoamérica.',
+    bgColor: 'bg-blue-400',
   },
   {
     id: '2',
-    name: 'Magic Eden',
-    logoUrl: 'https://magiceden.io/static/favicon/favicon-32x32.png',
-    link: 'https://magiceden.io',
-    description: 'Leading NFT marketplace on Solana',
-    bgColor: 'bg-yellow-400',
+    name: 'Hispanasol',
+    logoUrl: 'https://unavatar.io/twitter/hispanasol18060',
+    link: 'https://x.com/hispanasol18060',
+    description:
+      'Espacio dedicado a empoderar a las mujeres en el ecosistema de Solana.',
+    bgColor: 'bg-purple-300',
   },
   {
     id: '3',
-    name: 'Raydium',
-    logoUrl: 'https://raydium.io/favicon-32x32.png',
-    link: 'https://raydium.io',
-    description: 'Automated Market Maker on Solana',
-    bgColor: 'bg-pink-300',
+    name: 'Jupiter Spanish',
+    logoUrl: 'https://unavatar.io/twitter/JUPspanish',
+    link: 'https://x.com/JUPspanish',
+    description:
+      'Comunidad oficial en español del agregador de swaps líder en Solana.',
+    bgColor: 'bg-emerald-300',
   },
   {
     id: '4',
-    name: 'Marinade Finance',
-    logoUrl: 'https://www.marinade.finance/favicon.ico',
-    link: 'https://www.marinade.finance',
-    description: 'Liquid staking for Solana',
-    bgColor: 'bg-cyan-300',
+    name: 'Meteora ES',
+    logoUrl: 'https://unavatar.io/twitter/MeteoraES',
+    link: 'https://x.com/MeteoraES',
+    description:
+      'Capítulo en español de Meteora, enfocado en infraestructura de liquidez dinámica.',
+    bgColor: 'bg-indigo-300',
   },
   {
     id: '5',
-    name: 'Phantom Wallet',
-    logoUrl: 'https://phantom.app/favicon.png',
-    link: 'https://phantom.app',
-    description: 'Popular Web3 wallet',
-    bgColor: 'bg-orange-300',
+    name: 'Cultura Solana',
+    logoUrl: 'https://unavatar.io/twitter/CulturaSolana',
+    link: 'https://x.com/CulturaSolana',
+    description:
+      'Difusión de noticias, eventos y cultura general del ecosistema Solana en español.',
+    bgColor: 'bg-slate-200',
+  },
+  {
+    id: '6',
+    name: 'La Familia',
+    logoUrl: 'https://unavatar.io/twitter/LaFamilia_so',
+    link: 'https://x.com/LaFamilia_so',
+    description:
+      'Comunidad vibrante de builders y entusiastas de Solana en la región.',
+    bgColor: 'bg-red-300',
+  },
+  {
+    id: '7',
+    name: 'Casa Web3',
+    logoUrl: 'https://unavatar.io/twitter/casaweb3_',
+    link: 'https://x.com/casaweb3_',
+    description:
+      'Hub de aprendizaje y colaboración para la nueva generación de internet.',
+    bgColor: 'bg-amber-200',
   },
 ]
-
 interface CommunityCardProps {
   community: Community
 }
@@ -106,7 +128,7 @@ function CommunityCard({ community }: CommunityCardProps) {
           onPress={handleVisitPress}
           className="rounded-xl border-2 border-black bg-blue-500 px-5 py-2 shadow-sm"
         >
-          <Text className="font-medium text-base text-white">Visit</Text>
+          <Text className="font-medium text-base text-white">Únete</Text>
         </Button>
       </View>
     </View>
