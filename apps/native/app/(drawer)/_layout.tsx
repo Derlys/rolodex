@@ -16,22 +16,41 @@ function DrawerLayout() {
   return (
     <Drawer
       screenOptions={{
-        headerTintColor: themeColorForeground,
-        headerStyle: { backgroundColor: themeColorBackground },
+        headerTintColor: '#000000',
+        headerStyle: {
+          backgroundColor: '#ffffff',
+          shadowColor: '#000000',
+          shadowOffset: { width: 4, height: 4 },
+          shadowOpacity: 1,
+          shadowRadius: 0,
+          elevation: 0,
+        },
         headerTitleStyle: {
-          fontWeight: '600',
-          color: themeColorForeground,
+          fontWeight: '900',
+          fontSize: 24,
+          color: '#000000',
         },
         headerRight: renderThemeToggle,
-        drawerStyle: { backgroundColor: themeColorBackground },
+        drawerStyle: {
+          backgroundColor: '#f8f9fa',
+          borderRightWidth: 2,
+          borderRightColor: '#000000',
+        },
       }}
     >
       <Drawer.Screen
         name="index"
         options={{
-          headerTitle: 'Home',
+          headerTitle: 'HOME',
           drawerLabel: ({ color, focused }) => (
-            <Text style={{ color: focused ? color : themeColorForeground }}>
+            <Text
+              style={{
+                color: focused ? '#000000' : '#333333',
+                fontWeight: '900',
+                fontSize: 18,
+                textTransform: 'uppercase',
+              }}
+            >
               Home
             </Text>
           ),
@@ -39,7 +58,7 @@ function DrawerLayout() {
             <Ionicons
               name="home-outline"
               size={size}
-              color={focused ? color : themeColorForeground}
+              color={focused ? '#000000' : '#333333'}
             />
           ),
         }}
@@ -47,9 +66,16 @@ function DrawerLayout() {
       <Drawer.Screen
         name="(communities)"
         options={{
-          headerTitle: 'Communities',
+          headerTitle: 'COMMUNITIES',
           drawerLabel: ({ color, focused }) => (
-            <Text style={{ color: focused ? color : themeColorForeground }}>
+            <Text
+              style={{
+                color: focused ? '#000000' : '#333333',
+                fontWeight: '900',
+                fontSize: 18,
+                textTransform: 'uppercase',
+              }}
+            >
               Communities
             </Text>
           ),
@@ -57,17 +83,13 @@ function DrawerLayout() {
             <Ionicons
               name="people"
               size={size}
-              color={focused ? color : themeColorForeground}
+              color={focused ? '#000000' : '#333333'}
             />
           ),
           headerRight: () => (
             <Link href="/modal" asChild>
-              <Pressable className="mr-4">
-                <Ionicons
-                  name="add-outline"
-                  size={24}
-                  color={themeColorForeground}
-                />
+              <Pressable className="mr-4 rounded-xl border-2 border-black bg-red-500 p-2 shadow-[3px_3px_0_rgba(0,0,0,1)]">
+                <Ionicons name="add-outline" size={20} color="#ffffff" />
               </Pressable>
             </Link>
           ),
@@ -76,9 +98,16 @@ function DrawerLayout() {
       <Drawer.Screen
         name="todos"
         options={{
-          headerTitle: 'Todos',
+          headerTitle: 'TODOS',
           drawerLabel: ({ color, focused }) => (
-            <Text style={{ color: focused ? color : themeColorForeground }}>
+            <Text
+              style={{
+                color: focused ? '#000000' : '#333333',
+                fontWeight: '900',
+                fontSize: 18,
+                textTransform: 'uppercase',
+              }}
+            >
               Todos
             </Text>
           ),
@@ -86,7 +115,7 @@ function DrawerLayout() {
             <Ionicons
               name="checkbox-outline"
               size={size}
-              color={focused ? color : themeColorForeground}
+              color={focused ? '#000000' : '#333333'}
             />
           ),
         }}
@@ -94,9 +123,16 @@ function DrawerLayout() {
       <Drawer.Screen
         name="solana"
         options={{
-          headerTitle: 'Solana',
+          headerTitle: 'SOLANA',
           drawerLabel: ({ color, focused }) => (
-            <Text style={{ color: focused ? color : themeColorForeground }}>
+            <Text
+              style={{
+                color: focused ? '#000000' : '#333333',
+                fontWeight: '900',
+                fontSize: 18,
+                textTransform: 'uppercase',
+              }}
+            >
               Solana
             </Text>
           ),
@@ -104,7 +140,7 @@ function DrawerLayout() {
             <Ionicons
               name="wallet-outline"
               size={size}
-              color={focused ? color : themeColorForeground}
+              color={focused ? '#000000' : '#333333'}
             />
           ),
         }}

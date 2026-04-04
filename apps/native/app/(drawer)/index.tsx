@@ -18,8 +18,8 @@ export default function Home() {
   return (
     <Container>
       <View className="flex w-full flex-col gap-6 p-6">
-        <Text className="mb-2 text-center font-bold text-4xl text-foreground">
-          Rolodex
+        <Text className="mb-2 text-center font-black text-4xl text-slate-950">
+          ROLODEX
         </Text>
         <HomeUiStatus
           isConnected={healthCheck?.data === 'OK'}
@@ -44,71 +44,77 @@ function HomeUiStatus({
   const dangerColor = useThemeColor('danger')
 
   return (
-    <Card className="p-4">
+    <View className="rounded-2xl border-2 border-black bg-purple-300 p-4 shadow-[4px_4px_0_rgba(0,0,0,1)]">
       <View className="flex-row items-center">
         <View
-          className={`mr-3 h-3 w-3 rounded-full ${isConnected ? 'bg-success' : 'bg-muted'}`}
+          className={`mr-3 h-3 w-3 rounded-full ${isConnected ? 'bg-green-500' : 'bg-gray-400'}`}
         />
         <View className="flex-1">
-          <Text className="mb-1 font-medium text-foreground">ORPC Backend</Text>
-          <Card.Description>
+          <Text className="mb-1 font-black text-lg text-slate-950">
+            ORPC BACKEND
+          </Text>
+          <Text className="font-semibold text-slate-800">
             {isLoading
               ? 'Checking connection...'
               : isConnected
                 ? 'Connected to API'
                 : 'API Disconnected'}
-          </Card.Description>
+          </Text>
         </View>
         {isLoading && (
-          <Ionicons name="hourglass-outline" size={20} color={mutedColor} />
+          <Ionicons name="hourglass-outline" size={20} color="#000000" />
         )}
         {!isLoading && isConnected && (
-          <Ionicons name="checkmark-circle" size={20} color={successColor} />
+          <Ionicons name="checkmark-circle" size={20} color="#000000" />
         )}
         {!isLoading && !isConnected && (
-          <Ionicons name="close-circle" size={20} color={dangerColor} />
+          <Ionicons name="close-circle" size={20} color="#000000" />
         )}
       </View>
-    </Card>
+    </View>
   )
 }
 
 function HomeUiNoSession() {
   return (
-    <Card className="mb-6 p-4">
-      <Card.Title className="mb-3">No active session</Card.Title>
+    <View className="mb-6 rounded-2xl border-2 border-black bg-cyan-300 p-4 shadow-[4px_4px_0_rgba(0,0,0,1)]">
+      <Text className="mb-3 font-black text-slate-950 text-xl">
+        NO ACTIVE SESSION
+      </Text>
       <View className="flex gap-6">
         <SolanaSignInButton />
         <View className="flex-row items-center gap-4">
-          <View className="h-[1] flex-1 bg-muted/20" />
-          <Text className="text-muted text-xs uppercase">
+          <View className="h-[1] flex-1 bg-black" />
+          <Text className="font-bold text-slate-950 text-xs uppercase">
             Or continue with email
           </Text>
-          <View className="h-[1] flex-1 bg-muted/20" />
+          <View className="h-[1] flex-1 bg-black" />
         </View>
         <SignIn />
         <SignUp />
       </View>
-    </Card>
+    </View>
   )
 }
 
 function HomeUiSession({ session }: { session: AuthSession }) {
   return (
-    <Card className="mb-6 p-4">
-      <Card.Title className="mb-3">
-        Welcome, <Text className="font-medium">{session.user.name}</Text>
-      </Card.Title>
-      <Text className="mb-4 text-muted text-sm">{session.user.email}</Text>
+    <View className="mb-6 rounded-2xl border-2 border-black bg-green-300 p-4 shadow-[4px_4px_0_rgba(0,0,0,1)]">
+      <Text className="mb-3 font-black text-slate-950 text-xl">
+        Welcome, <Text className="font-black">{session.user.name}</Text>
+      </Text>
+      <Text className="mb-4 font-semibold text-slate-800 text-sm">
+        {session.user.email}
+      </Text>
       <Button
         onPress={() => {
           authClient.signOut()
           void queryClient.invalidateQueries()
         }}
-        variant="danger-soft"
+        className="rounded-xl border-2 border-black bg-red-500 shadow-[3px_3px_0_rgba(0,0,0,1)]"
       >
-        Sign Out
+        <Text className="font-black text-white">SIGN OUT</Text>
       </Button>
-    </Card>
+    </View>
   )
 }

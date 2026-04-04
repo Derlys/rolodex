@@ -95,7 +95,9 @@ export default function TodosScreen() {
       <Container>
         <View className="flex-1 items-center justify-center p-4">
           <Spinner size="lg" />
-          <Text className="mt-3 text-muted text-sm">Checking session...</Text>
+          <Text className="mt-3 font-semibold text-slate-700 text-sm">
+            CHECKING SESSION...
+          </Text>
         </View>
       </Container>
     )
@@ -105,22 +107,22 @@ export default function TodosScreen() {
     return (
       <Container>
         <View className="flex-1 justify-center p-4">
-          <Surface
-            variant="secondary"
-            className="items-center rounded-lg px-5 py-8"
-          >
-            <Ionicons name="lock-closed-outline" size={36} color={mutedColor} />
-            <Text className="mt-4 text-center font-semibold text-foreground text-xl">
-              Sign in to view your todos
+          <View className="items-center rounded-2xl border-2 border-black bg-yellow-300 p-5 shadow-[4px_4px_0_rgba(0,0,0,1)]">
+            <Ionicons name="lock-closed-outline" size={36} color="#000000" />
+            <Text className="mt-4 text-center font-black text-slate-950 text-xl">
+              SIGN IN TO VIEW YOUR TODOS
             </Text>
-            <Text className="mt-2 text-center text-muted text-sm">
+            <Text className="mt-2 text-center font-semibold text-slate-800 text-sm">
               Your todo list is tied to your account. Log in from the Home
               screen to create and manage tasks.
             </Text>
-            <Button className="mt-5" onPress={() => router.push('/')}>
-              Go to Home
+            <Button
+              className="mt-5 rounded-xl border-2 border-black bg-blue-500 shadow-[3px_3px_0_rgba(0,0,0,1)]"
+              onPress={() => router.push('/')}
+            >
+              <Text className="font-black text-white">GO TO HOME</Text>
             </Button>
-          </Surface>
+          </View>
         </View>
       </Container>
     )
@@ -156,20 +158,20 @@ export default function TodosScreen() {
       <ScrollView className="flex-1" contentContainerClassName="p-4">
         <View className="mb-4 py-4">
           <View className="flex-row items-center justify-between">
-            <Text className="font-semibold text-2xl text-foreground tracking-tight">
-              Tasks
+            <Text className="font-black text-3xl text-slate-950 tracking-tight">
+              TASKS
             </Text>
             {totalCount > 0 && (
-              <Chip variant="secondary" color="accent" size="sm">
-                <Chip.Label>
+              <View className="rounded-xl border border-black bg-red-500 px-3 py-1 shadow-[2px_2px_0_rgba(0,0,0,1)]">
+                <Text className="font-black text-sm text-white">
                   {completedCount}/{totalCount}
-                </Chip.Label>
-              </Chip>
+                </Text>
+              </View>
             )}
           </View>
         </View>
 
-        <Surface variant="secondary" className="mb-4 rounded-lg p-3">
+        <View className="mb-4 rounded-2xl border-2 border-black bg-lime-300 p-3 shadow-[4px_4px_0_rgba(0,0,0,1)]">
           <View className="flex-row items-center gap-2">
             <View className="flex-1">
               <TextField>
@@ -185,11 +187,11 @@ export default function TodosScreen() {
             </View>
             <Button
               isIconOnly
-              variant={
+              className={`rounded-xl border-2 border-black shadow-[3px_3px_0_rgba(0,0,0,1)] ${
                 createMutation.isPending || !newTodoText.trim()
-                  ? 'secondary'
-                  : 'primary'
-              }
+                  ? 'bg-gray-400'
+                  : 'bg-green-500'
+              }`}
               isDisabled={createMutation.isPending || !newTodoText.trim()}
               onPress={handleAddTodo}
               size="sm"
@@ -197,49 +199,39 @@ export default function TodosScreen() {
               {createMutation.isPending ? (
                 <Spinner size="sm" color="default" />
               ) : (
-                <Ionicons
-                  name="add"
-                  size={20}
-                  color={
-                    createMutation.isPending || !newTodoText.trim()
-                      ? mutedColor
-                      : foregroundColor
-                  }
-                />
+                <Ionicons name="add" size={20} color="#ffffff" />
               )}
             </Button>
           </View>
-        </Surface>
+        </View>
 
         {isLoading && (
           <View className="items-center justify-center py-12">
             <Spinner size="lg" />
-            <Text className="mt-3 text-muted text-sm">Loading tasks...</Text>
+            <Text className="mt-3 font-semibold text-slate-700 text-sm">
+              LOADING TASKS...
+            </Text>
           </View>
         )}
 
         {todos?.data && todos.data.length === 0 && !isLoading && (
-          <Surface
-            variant="secondary"
-            className="items-center justify-center rounded-lg py-10"
-          >
-            <Ionicons name="checkbox-outline" size={40} color={mutedColor} />
-            <Text className="mt-3 font-medium text-foreground">
-              No tasks yet
-            </Text>
-            <Text className="mt-1 text-muted text-xs">
+          <View className="items-center justify-center rounded-2xl border-2 border-black bg-purple-300 p-10 shadow-[4px_4px_0_rgba(0,0,0,1)]">
+            <Ionicons name="checkbox-outline" size={40} color="#000000" />
+            <Text className="mt-3 font-black text-slate-950">NO TASKS YET</Text>
+            <Text className="mt-1 font-semibold text-slate-800 text-xs">
               Add your first task to get started
             </Text>
-          </Surface>
+          </View>
         )}
 
         {todos?.data && todos.data.length > 0 && (
           <View className="gap-2">
             {todos.data.map((todo) => (
-              <Surface
+              <View
                 key={todo.id}
-                variant="secondary"
-                className="rounded-lg p-3"
+                className={`rounded-2xl border-2 border-black p-3 shadow-[3px_3px_0_rgba(0,0,0,1)] ${
+                  todo.completed ? 'bg-gray-300' : 'bg-white'
+                }`}
               >
                 <View className="flex-row items-center gap-3">
                   <Checkbox
@@ -250,25 +242,25 @@ export default function TodosScreen() {
                   />
                   <View className="flex-1">
                     <Text
-                      className={`text-sm ${todo.completed ? 'text-muted line-through' : 'text-foreground'}`}
+                      className={`font-semibold text-sm ${
+                        todo.completed
+                          ? 'text-slate-500 line-through'
+                          : 'text-slate-950'
+                      }`}
                     >
                       {todo.text}
                     </Text>
                   </View>
                   <Button
                     isIconOnly
-                    variant="ghost"
+                    className="rounded-xl border border-black bg-red-500 shadow-[2px_2px_0_rgba(0,0,0,1)]"
                     onPress={() => handleDeleteTodo(todo.id)}
                     size="sm"
                   >
-                    <Ionicons
-                      name="trash-outline"
-                      size={16}
-                      color={dangerColor}
-                    />
+                    <Ionicons name="trash-outline" size={16} color="#ffffff" />
                   </Button>
                 </View>
-              </Surface>
+              </View>
             ))}
           </View>
         )}
