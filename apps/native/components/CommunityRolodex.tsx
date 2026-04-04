@@ -73,29 +73,29 @@ function CommunityCard({ community }: CommunityCardProps) {
 
   return (
     <View
-      className={`mb-6 rounded-2xl border-2 border-black p-6 shadow-[4px_4px_0_rgba(0,0,0,1)] ${community.bgColor}`}
+      className={`mb-6 rounded-2xl border-2 border-black p-5 shadow-md ${community.bgColor}`}
     >
       {/* Header row with logo and name */}
       <View className="mb-4 flex-row items-center gap-4">
-        <View className="h-14 w-14 items-center justify-center rounded-xl border border-black bg-white shadow-[2px_2px_0_rgba(0,0,0,1)]">
+        <View className="h-12 w-12 items-center justify-center rounded-xl border border-slate-200 bg-white shadow-sm">
           <Image
             source={{ uri: community.logoUrl }}
             style={{
-              width: 28,
-              height: 28,
+              width: 24,
+              height: 24,
               resizeMode: 'contain',
             }}
             defaultSource={require('@/assets/images/icon.png')}
           />
         </View>
-        <Text className="flex-1 font-black text-3xl text-slate-950">
+        <Text className="flex-1 font-bold text-2xl text-slate-900">
           {community.name}
         </Text>
       </View>
 
       {/* Description */}
       {community.description && (
-        <Text className="mb-6 font-semibold text-base text-slate-800 leading-relaxed">
+        <Text className="mb-5 font-medium text-base text-slate-700 leading-relaxed">
           {community.description}
         </Text>
       )}
@@ -104,9 +104,9 @@ function CommunityCard({ community }: CommunityCardProps) {
       <View className="flex-row justify-end">
         <Button
           onPress={handleVisitPress}
-          className="rounded-xl border-2 border-black bg-blue-500 px-6 py-2 shadow-[3px_3px_0_rgba(0,0,0,1)]"
+          className="rounded-xl border-2 border-black bg-blue-500 px-5 py-2 shadow-sm"
         >
-          <Text className="font-black text-base text-white">VISIT</Text>
+          <Text className="font-medium text-base text-white">Visit</Text>
         </Button>
       </View>
     </View>
@@ -119,24 +119,26 @@ export function CommunityRolodex() {
   return (
     <View className="flex-1 bg-white">
       <ScrollView
-        contentContainerClassName="pb-24"
+        contentContainerClassName="pb-20"
         contentContainerStyle={{
           flexGrow: 1,
           paddingBottom: insets.bottom + 80,
         }}
       >
         <View className="px-6 pt-10 pb-6">
-          <Text className="mb-2 font-black text-3xl text-slate-950">
+          <Text className="mb-2 font-bold text-2xl text-slate-900">
             Communities
           </Text>
-          <Text className="font-bold text-lg text-slate-700">
+          <Text className="font-medium text-lg text-slate-600">
             Discover amazing projects in the Solana ecosystem
           </Text>
         </View>
 
-        <View className="px-6">
+        <View className="px-3">
           {COMMUNITIES.map((community) => (
-            <CommunityCard key={community.id} community={community} />
+            <View key={community.id} className="w-[94%] self-center">
+              <CommunityCard community={community} />
+            </View>
           ))}
         </View>
       </ScrollView>

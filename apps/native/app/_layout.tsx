@@ -16,7 +16,7 @@ import { debugServerUrl } from '@/lib/server-url'
 import { queryClient } from '@/utils/orpc'
 
 export const unstable_settings = {
-  initialRouteName: '(drawer)',
+  initialRouteName: '(tabs)',
 }
 
 debugServerUrl()
@@ -31,7 +31,7 @@ const identity = {
 function StackLayout() {
   return (
     <Stack screenOptions={{}}>
-      <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen
         name="modal"
         options={{ title: 'Modal', presentation: 'modal' }}
