@@ -1,5 +1,12 @@
 import type React from 'react'
-import { createContext, useCallback, useContext, useMemo } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+} from 'react'
+import { useColorScheme } from 'react-native'
 import { Uniwind, useUniwind } from 'uniwind'
 
 type ThemeName = 'light' | 'dark'
@@ -22,6 +29,21 @@ export const AppThemeProvider = ({
   children: React.ReactNode
 }) => {
   const { theme } = useUniwind()
+  const systemColorScheme = useColorScheme()
+
+  // Initialize theme based on system preference if not set
+  useEffect(() => {
+    if (
+      !theme &&
+      systemColorScheme &&
+      (systemColorScheme === 'light' || systemColorScheme === 'dark')
+    ) {
+      Uniwind.setTheme(systemColorScheme as 'light' | 'dark')
+    } else if (!theme && !systemColorScheme) {
+      // Default to light theme if system preference is not available
+      Uniwind.setTheme('light')
+    }
+  }, [theme, systemColorScheme])
 
   const isLight = useMemo(() => {
     return theme === 'light'

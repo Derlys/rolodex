@@ -1,5 +1,6 @@
 import '@/polyfills'
 import '@/global.css'
+import '@/utils/i18n'
 import { QueryClientProvider } from '@tanstack/react-query'
 import {
   createSolanaDevnet,
@@ -16,7 +17,7 @@ import { debugServerUrl } from '@/lib/server-url'
 import { queryClient } from '@/utils/orpc'
 
 export const unstable_settings = {
-  initialRouteName: '(drawer)',
+  initialRouteName: '(tabs)',
 }
 
 debugServerUrl()
@@ -26,18 +27,6 @@ const identity = {
   name: 'Rolodex',
   uri: 'https://solana.com',
   icon: 'favicon.png',
-}
-
-function StackLayout() {
-  return (
-    <Stack screenOptions={{}}>
-      <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
-      <Stack.Screen
-        name="modal"
-        options={{ title: 'Modal', presentation: 'modal' }}
-      />
-    </Stack>
-  )
 }
 
 export default function Layout() {
@@ -55,7 +44,12 @@ export default function Layout() {
                 }}
               >
                 <ThemedStatusBar />
-                <StackLayout />
+                <Stack screenOptions={{ headerShown: false }}>
+                  <Stack.Screen
+                    name="(tabs)"
+                    options={{ headerShown: false }}
+                  />
+                </Stack>
               </HeroUINativeProvider>
             </AppThemeProvider>
           </KeyboardProvider>

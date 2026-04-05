@@ -1,14 +1,6 @@
-import { Card } from 'heroui-native'
+import { Button } from 'heroui-native'
 import { useCallback } from 'react'
-import {
-  ActivityIndicator,
-  FlatList,
-  Image,
-  Linking,
-  Pressable,
-  Text,
-  View,
-} from 'react-native'
+import { Image, Linking, ScrollView, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 interface Community {
@@ -17,53 +9,80 @@ interface Community {
   logoUrl: string
   link: string
   description?: string
+  bgColor: string // Add vibrant background color
 }
 
 const COMMUNITIES: Community[] = [
   {
     id: '1',
-    name: 'Solana Foundation',
-    logoUrl: 'https://solana.com/favicon.png',
-    link: 'https://solana.com',
-    description: 'Official Solana Foundation',
+    name: 'WayLearn Latam',
+    logoUrl: 'https://unavatar.io/twitter/waylearnlatam',
+    link: 'https://x.com/waylearnlatam',
+    description:
+      'Comunidad educativa enfocada en Web3 y desarrollo en Latinoamérica.',
+    bgColor: 'bg-blue-400',
   },
   {
     id: '2',
-    name: 'Magic Eden',
-    logoUrl: 'https://magiceden.io/static/favicon/favicon-32x32.png',
-    link: 'https://magiceden.io',
-    description: 'Leading NFT marketplace on Solana',
+    name: 'Hispanasol',
+    logoUrl: 'https://unavatar.io/twitter/hispanasol18060',
+    link: 'https://x.com/hispanasol18060',
+    description:
+      'Espacio dedicado a empoderar a las mujeres en el ecosistema de Solana.',
+    bgColor: 'bg-purple-300',
   },
   {
     id: '3',
-    name: 'Raydium',
-    logoUrl: 'https://raydium.io/favicon-32x32.png',
-    link: 'https://raydium.io',
-    description: 'Automated Market Maker on Solana',
+    name: 'Jupiter Spanish',
+    logoUrl: 'https://unavatar.io/twitter/JUPspanish',
+    link: 'https://x.com/JUPspanish',
+    description:
+      'Comunidad oficial en español del agregador de swaps líder en Solana.',
+    bgColor: 'bg-emerald-300',
   },
   {
     id: '4',
-    name: 'Marinade Finance',
-    logoUrl: 'https://www.marinade.finance/favicon.ico',
-    link: 'https://www.marinade.finance',
-    description: 'Liquid staking for Solana',
+    name: 'Meteora ES',
+    logoUrl: 'https://unavatar.io/twitter/MeteoraES',
+    link: 'https://x.com/MeteoraES',
+    description:
+      'Capítulo en español de Meteora, enfocado en infraestructura de liquidez dinámica.',
+    bgColor: 'bg-indigo-300',
   },
   {
     id: '5',
-    name: 'Phantom Wallet',
-    logoUrl: 'https://phantom.app/favicon.png',
-    link: 'https://phantom.app',
-    description: 'Popular Web3 wallet',
+    name: 'Cultura Solana',
+    logoUrl: 'https://unavatar.io/twitter/CulturaSolana',
+    link: 'https://x.com/CulturaSolana',
+    description:
+      'Difusión de noticias, eventos y cultura general del ecosistema Solana en español.',
+    bgColor: 'bg-slate-200',
+  },
+  {
+    id: '6',
+    name: 'La Familia',
+    logoUrl: 'https://unavatar.io/twitter/LaFamilia_so',
+    link: 'https://x.com/LaFamilia_so',
+    description:
+      'Comunidad vibrante de builders y entusiastas de Solana en la región.',
+    bgColor: 'bg-red-300',
+  },
+  {
+    id: '7',
+    name: 'Casa Web3',
+    logoUrl: 'https://unavatar.io/twitter/casaweb3_',
+    link: 'https://x.com/casaweb3_',
+    description:
+      'Hub de aprendizaje y colaboración para la nueva generación de internet.',
+    bgColor: 'bg-amber-200',
   },
 ]
-
 interface CommunityCardProps {
   community: Community
-  index: number
 }
 
-function CommunityCard({ community, index }: CommunityCardProps) {
-  const handlePress = useCallback(async () => {
+function CommunityCard({ community }: CommunityCardProps) {
+  const handleVisitPress = useCallback(async () => {
     try {
       const canOpen = await Linking.canOpenURL(community.link)
       if (canOpen) {
@@ -75,43 +94,44 @@ function CommunityCard({ community, index }: CommunityCardProps) {
   }, [community.link])
 
   return (
-    <Pressable onPress={handlePress} className="mx-6 mb-4 active:opacity-70">
-      <Card className="overflow-hidden border-0 shadow-lg">
-        <Card.Body className="flex-row gap-4 bg-gradient-to-r from-slate-50 to-slate-100 p-6 dark:from-slate-900 dark:to-slate-800">
-          {/* Logo */}
-          <View className="h-16 w-16 items-center justify-center rounded-lg bg-white shadow-md dark:bg-slate-700">
-            <Image
-              source={{ uri: community.logoUrl }}
-              style={{
-                width: 40,
-                height: 40,
-                resizeMode: 'contain',
-              }}
-              defaultSource={require('@/assets/images/icon.png')}
-            />
-          </View>
+    <View
+      className={`mb-6 rounded-2xl border-2 border-black p-5 shadow-md ${community.bgColor}`}
+    >
+      {/* Header row with logo and name */}
+      <View className="mb-4 flex-row items-center gap-4">
+        <View className="h-12 w-12 items-center justify-center rounded-xl border border-slate-200 bg-white shadow-sm">
+          <Image
+            source={{ uri: community.logoUrl }}
+            style={{
+              width: 24,
+              height: 24,
+              resizeMode: 'contain',
+            }}
+            defaultSource={require('@/assets/images/icon.png')}
+          />
+        </View>
+        <Text className="flex-1 font-bold text-2xl text-slate-900">
+          {community.name}
+        </Text>
+      </View>
 
-          {/* Content */}
-          <View className="flex-1 justify-center">
-            <Text className="font-bold text-lg text-slate-900 dark:text-white">
-              {community.name}
-            </Text>
-            {community.description && (
-              <Text className="mt-1 text-slate-600 text-sm dark:text-slate-300">
-                {community.description}
-              </Text>
-            )}
-          </View>
+      {/* Description */}
+      {community.description && (
+        <Text className="mb-5 font-medium text-base text-slate-700 leading-relaxed">
+          {community.description}
+        </Text>
+      )}
 
-          {/* Arrow indicator */}
-          <View className="justify-center">
-            <Text className="text-slate-400 text-xl dark:text-slate-500">
-              →
-            </Text>
-          </View>
-        </Card.Body>
-      </Card>
-    </Pressable>
+      {/* Visit Button - bottom right */}
+      <View className="flex-row justify-end">
+        <Button
+          onPress={handleVisitPress}
+          className="rounded-xl border-2 border-black bg-blue-500 px-5 py-2 shadow-sm"
+        >
+          <Text className="font-medium text-base text-white">Únete</Text>
+        </Button>
+      </View>
+    </View>
   )
 }
 
@@ -119,29 +139,31 @@ export function CommunityRolodex() {
   const insets = useSafeAreaInsets()
 
   return (
-    <View className="flex-1">
-      <View className="px-6 pt-6 pb-2">
-        <Text className="font-bold text-2xl text-slate-900 dark:text-white">
-          Community
-        </Text>
-        <Text className="mt-1 text-slate-600 text-sm dark:text-slate-400">
-          Explore projects in the Solana ecosystem
-        </Text>
-      </View>
-
-      <FlatList
-        data={COMMUNITIES}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item, index }) => (
-          <CommunityCard community={item} index={index} />
-        )}
-        scrollEnabled={true}
-        showsVerticalScrollIndicator={false}
+    <View className="flex-1 bg-white">
+      <ScrollView
+        contentContainerClassName="pb-20"
         contentContainerStyle={{
-          paddingBottom: insets.bottom + 16,
+          flexGrow: 1,
+          paddingBottom: insets.bottom + 80,
         }}
-        bounces={true}
-      />
+      >
+        <View className="px-6 pt-10 pb-6">
+          <Text className="mb-2 font-bold text-2xl text-slate-900">
+            Communities
+          </Text>
+          <Text className="font-medium text-lg text-slate-600">
+            Discover amazing projects in the Solana ecosystem
+          </Text>
+        </View>
+
+        <View className="px-3">
+          {COMMUNITIES.map((community) => (
+            <View key={community.id} className="w-[94%] self-center">
+              <CommunityCard community={community} />
+            </View>
+          ))}
+        </View>
+      </ScrollView>
     </View>
   )
 }
